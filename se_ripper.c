@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 
     char sir0h[] = HEADER_SIR0; 
 
-    int check = sir0_checkHeader(fp, 0, sir0h, sizeof(sir0h));
+    bool check = sir0_checkHeader(fp, 0, sir0h, sizeof(sir0h));
     printf("SIR0_headercheck %i\n", check);
 
     fclose(fp);
