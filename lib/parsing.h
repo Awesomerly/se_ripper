@@ -7,6 +7,7 @@
 
 #define SIR0_H "SIR0" 
 
-bool checkHeader(FILE* fp, int offset, char* header); 
+bool checkStr(FILE* fp, char* str); 
+bool checkBuf(FILE* fp, char* buf, size_t len); 
 
 #endif
