@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lib/sir0.h"
+#include "lib/parsing.h"
 
 int main(int argc, char *argv[]) {
 

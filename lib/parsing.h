@@ -1,5 +1,5 @@
-#ifndef __SE_RIPPER_SIR0__
-#define __SE_RIPPER_SIR0__
+#ifndef __SE_RIPPER_PARSING__
+#define __SE_RIPPER_PARSING__
 
 #include <stdio.h>
 #include <stdint.h>
