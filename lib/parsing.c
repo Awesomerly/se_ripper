@@ -3,7 +3,7 @@
 /*
  * f'n to check chr array in file at offset 
  */
-bool sir0_checkHeader(FILE* fp, int offset, char* header, size_t len) {
+bool checkHeader(FILE* fp, int offset, char* header, size_t len) {
     fseek(fp, offset, SEEK_SET);    
     
     int i;
@@ -14,5 +14,4 @@ bool sir0_checkHeader(FILE* fp, int offset, char* header, size_t len) {
         }
     }
     return true;
-
 }

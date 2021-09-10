@@ -7,6 +7,6 @@
 
 #define SIR0_H {'S', 'I', 'R', '0'}
 
-bool sir0_checkHeader(FILE* fp, int offset, char* header, size_t len); 
+bool checkHeader(FILE* fp, int offset, char* header, size_t len); 
 
 #endif
