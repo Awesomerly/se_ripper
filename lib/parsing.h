@@ -5,8 +5,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define SIR0_H {'S', 'I', 'R', '0'}
+#define SIR0_H "SIR0" 
 
-bool checkHeader(FILE* fp, int offset, char* header, size_t len); 
+bool checkHeader(FILE* fp, int offset, char* header); 
 
 #endif
