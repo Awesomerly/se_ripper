@@ -18,7 +18,10 @@ int main(int argc, char *argv[]) {
     }
 
     bool check = checkStr(fp, SIR0_H);
-    printf("SIR0_headercheck %i\n", check);
+
+    if (!check) {
+        return(2);
+    }
 
     fclose(fp);
 
