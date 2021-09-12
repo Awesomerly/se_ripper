@@ -25,3 +25,13 @@ bool checkBuf(FILE* fp, char* buf, size_t len) {
     }
     return true;
 }
+
+int parse(FILE* fp) {
+    bool sir0_check = checkStr(fp, SIR0_H);
+    if (!sir0_check) {
+        printf("NOT A VALID SIR0 CONTAINER");
+        return 1;
+    }
+
+    return 0;
+}

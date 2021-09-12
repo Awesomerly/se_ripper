@@ -17,11 +17,9 @@ int main(int argc, char *argv[]) {
         return(1);
     }
 
-    bool check = checkStr(fp, SIR0_H);
+    int result = parse(fp);
 
-    if (!check) {
-        return(2);
-    }
+    printf("%i\n", result);
 
     fclose(fp);
 
