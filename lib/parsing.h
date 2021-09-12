@@ -5,7 +5,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define SIR0_H "SIR0" 
+#include "formats.h"
+
 
 bool checkStr(FILE* fp, char* str); 
 bool checkBuf(FILE* fp, char* buf, size_t len); 

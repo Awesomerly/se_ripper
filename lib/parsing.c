@@ -1,4 +1,5 @@
 #include "parsing.h"
+#include "formats.h"
 
 /*
  * f'n to check chr array in file at offset 
