@@ -28,11 +28,19 @@ bool checkBuf(FILE* fp, char* buf, size_t len) {
 }
 
 int parse(FILE* fp) {
-    bool sir0_check = checkStr(fp, SIR0_H);
-    if (!sir0_check) {
-        printf("NOT A VALID SIR0 CONTAINER");
+    if (!checkStr(fp, SIR0_H)) {
+        printf("NOT A VALID SIR0 CONTAINER\n");
         return 1;
     }
+    printf("SIR0 CHECK VALID\n");
+
+    // since I won't be dealing with ptr offsets i can skip to 0x40
+    fseek(fp, 0x40, SEEK_SET);
+    if (!checkStr(fp, SWDL_H)) {
+        printf("NO SWDL HEADER FOUND\n");
+        return 2;
+    }
+    printf("SWDL_CHK_VALID\n");
 
     return 0;
 }
