@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-#include "src/parsing.h"
+#include "parsing.h"
 
 int main(int argc, char *argv[]) {
 
-	if (argc != 2) {
-		printf("Invalid Arguments\n");
-		exit(-1);
-	}
-	char *filename = argv[1];
+    if (argc != 2) {
+        printf("Invalid Arguments\n");
+        exit(-1);
+    }
+    char *filename = argv[1];
 
     FILE* fp = fopen(filename, "rb");
     if (fp == NULL) {
@@ -24,5 +24,5 @@ int main(int argc, char *argv[]) {
 
     fclose(fp);
 
-	return(0);
+    return(0);
 }

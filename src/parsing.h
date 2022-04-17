@@ -7,7 +7,6 @@
 
 #include "formats.h"
 
-
 bool checkStr(FILE* fp, char* str); 
 bool checkBuf(FILE* fp, char* buf, size_t len); 
 
