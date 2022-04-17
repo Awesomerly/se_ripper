@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-#include "lib/parsing.h"
+#include "src/parsing.h"
 
 int main(int argc, char *argv[]) {
 
