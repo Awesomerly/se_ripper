@@ -1,20 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <dirent.h>
 
 #include "lib/parsing.h"
 
 int main(int argc, char *argv[]) {
 
 	if (argc != 2) {
-		printf("invalid # of arguments Lol");
-		exit(0);
+		printf("Invalid Arguments\n");
+		exit(-1);
 	}
 	char *filename = argv[1];
 
     FILE* fp = fopen(filename, "rb");
     if (fp == NULL) {
-        printf("File cannot be opened.");
-        return(1);
+        printf("File cannot be opened.\n");
+        return(-2);
     }
 
     int result = parse(fp);
