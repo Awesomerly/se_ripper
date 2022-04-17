@@ -1,46 +1,37 @@
+#include <stdio.h>
+#include <inttypes.h>
+#include <stdbool.h>
+#include <string.h>
+
+// may make it platform dependent
+#include <byteswap.h>
+
 #include "parsing.h"
 #include "formats.h"
 
-/*
- * f'n to check chr array in file at offset 
- * uses null terminated strings to represent header
- */
-bool checkStr(FILE* fp, char* str) {
-    int i;
-    for (i = 0; str[i] != '\0'; i++) {
-        char check = fgetc(fp);
-        if (check != str[i]) {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool checkBuf(FILE* fp, char* buf, size_t len) {
-    int i;
-    for (i = 0; i < len; i++) {
-        char check = fgetc(fp);
-        if (check != buf[i]) {
-            return false;
-        }
-    }
-    return true;
-}
-
 int parse(FILE* fp) {
-    if (!checkStr(fp, SIR0_H)) {
-        printf("NOT A VALID SIR0 CONTAINER\n");
-        return 1;
-    }
-    printf("SIR0 CHECK VALID\n");
 
-    // since I won't be dealing with ptr offsets i can skip to 0x40
+    struct SIR0_HEADER sir0_h;
+    char sir0_magic[4] = {SIR0_MAGIC};    
+
+    // read in SIR0 header
+    fread(&sir0_h, sizeof(uint8_t), sizeof(struct SIR0_HEADER), fp);
+    
+    if (memcmp(sir0_h.magic, sir0_magic, sizeof(sir0_h.magic)) != 0) return -1; // not a sir0 container
+
+
+    struct SWDL_HEADER swdl_h;
+    char swdl_magic[4] = {SWDL_MAGIC};
+
+    // skip to after padding in file
     fseek(fp, 0x40, SEEK_SET);
-    if (!checkStr(fp, SWDL_H)) {
-        printf("NO SWDL HEADER FOUND\n");
-        return 2;
-    }
-    printf("SWDL_CHK_VALID\n");
+
+    // read in the SWDL header
+    fread(&swdl_h, sizeof(uint8_t), sizeof(struct SWDL_HEADER), fp);
+    if (memcmp(swdl_h.magic, swdl_magic, sizeof(swdl_h.magic)) != 0) return -2; // not a swdl container
+
+    printf("%.*s - ", 16, swdl_h.filename);
+    printf("%" PRIu8 "/%" PRIu8 "/%" PRIu16 " %02" PRIu8 ":%02" PRIu8 "\n", swdl_h.month, swdl_h.day, swdl_h.year, swdl_h.hour, swdl_h.minute);
 
     return 0;
 }

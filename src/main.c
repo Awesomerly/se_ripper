@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 
     int result = parse(fp);
 
-    printf("%i\n", result);
+    if (result != 0) printf("%i\n", result);
 
     fclose(fp);
 
