@@ -1,2 +1,2 @@
 all:
-	cc -Wall -o se_ripper se_ripper.c src/parsing.c
+	cc -Wall -o bin/se_ripper se_ripper.c src/parsing.c
