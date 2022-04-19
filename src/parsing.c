@@ -3,11 +3,10 @@
 #include <stdbool.h>
 #include <string.h>
 
-// may make it platform dependent
-#include <byteswap.h>
-
 #include "parsing.h"
 #include "formats.h"
+
+
 
 int parse(FILE* fp) {
 
