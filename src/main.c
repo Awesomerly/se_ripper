@@ -17,10 +17,10 @@ int main(int argc, char *argv[]) {
         return(-2);
     }
 
+    printf("Reading %s\n", filename);
+
     int result = parse(fp);
-
-    if (result != 0) printf("%i\n", result);
-
+    if (result != 0) printf("Parsing error %i\n", result);
     fclose(fp);
 
     return(0);
