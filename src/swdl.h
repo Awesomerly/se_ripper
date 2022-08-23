@@ -7,6 +7,9 @@
 #define SWDL_MAGIC 's', 'w', 'd', 'l'
 
 struct SWDL_HEADER* SWDL_create_header(FILE* fp, struct SIR0* sir0_header);
+int SWDL_check_magic(struct SWDL_HEADER* header);
+void SWDL_print_header(struct SWDL_HEADER* swdl_header);
+void SWDL_print_datetime(struct SWDL_HEADER* swdl_header);
 
 struct SWDL_HEADER {
     char magic[4];
@@ -32,12 +35,12 @@ struct SWDL_HEADER {
     uint32_t _unk12;
     uint32_t _unk13;
 
-    uint32_t pmcdlen;
+    uint32_t pcmdlen;
 
     uint32_t unk14;
 
     uint16_t nbwavislots;
-    uint16_t nbprislots;
+    uint16_t nbprgislots;
 
     uint32_t wavilen;
 };
