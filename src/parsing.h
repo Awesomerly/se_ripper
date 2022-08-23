@@ -4,9 +4,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool checkStr(FILE* fp, char* str); 
-bool checkBuf(FILE* fp, char* buf, size_t len); 
-
 int parse(FILE* fp);
 
 #endif
