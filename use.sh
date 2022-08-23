@@ -1,1 +1,1 @@
-find . -name "*.se" -type f -print | xargs -L1 ./bin/se_ripper
+find . -type f -print | xargs -L1 ./bin/se_ripper
