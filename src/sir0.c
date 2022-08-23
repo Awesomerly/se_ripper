@@ -56,5 +56,8 @@ struct SIR0* SIR0_create(FILE* fp) {
 
     SIR0_read_pointers(fp, wrapper);
 
+    // go to beginning of file
+    fseek(fp, 0, SEEK_SET);
+
     return wrapper;
 }
