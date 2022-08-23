@@ -7,31 +7,25 @@
 #include "sir0.h"
 #include "swdl.h"
 
-char swdl_magic[4] = {SWDL_MAGIC};
 
 int parse(FILE* fp) {
 
-    struct SIR0* sir0 = SIR0_create(fp);
-    if (sir0 == NULL) return -1;
+    struct SIR0* sir0_header = SIR0_create(fp);
+    if (sir0_header == NULL) return -1;
 
-    struct SWDL_HEADER swdl_h;
-    // go to swdl
-    fseek(fp, sir0->file_ptrs->swdl_ptr, SEEK_SET);
+    struct SWDL_HEADER* swdl_header = SWDL_create_header(fp, sir0_header);
+    if (swdl_header == NULL) return -2;
 
-    char swdl_magic[4] = {SWDL_MAGIC};
-    // read in the SWDL header
-    fread(&swdl_h, sizeof(uint8_t), sizeof(struct SWDL_HEADER), fp);
-    if (memcmp(swdl_h.magic, swdl_magic, sizeof(swdl_h.magic)) != 0) return -2; // not a swdl container
+    printf("%.*s - ", 16, swdl_header->filename);
+    //printf("%" PRIu8 "/%" PRIu8 "/%" PRIu16 " %02" PRIu8 ":%02" PRIu8 " - ", swdl_header->month, swdl_header->day, swdl_header->year, swdl_header->hour, swdl_header->minute);
 
-    printf("%.*s - ", 16, swdl_h.filename);
-    printf("%" PRIu8 "/%" PRIu8 "/%" PRIu16 " %02" PRIu8 ":%02" PRIu8 " - ", swdl_h.month, swdl_h.day, swdl_h.year, swdl_h.hour, swdl_h.minute);
-
-    printf("wavi slots: %" PRIu16 " - ", swdl_h.nbwavislots);
-    printf("wavi_len: %" PRIu32 , swdl_h.wavilen);
+    printf("wavi slots: %" PRIu16 " - ", swdl_header->nbwavislots);
+    printf("wavi_len: %" PRIu32 , swdl_header->wavilen);
 
     printf("\n");
 
-    SIR0_destroy(sir0);
+    SIR0_destroy(sir0_header);
+    free(swdl_header);
 
     return 0;
 }

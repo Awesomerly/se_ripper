@@ -2,8 +2,11 @@
 #define __SE_RIPPER_SWDL__
 
 #include <stdint.h>
+#include "sir0.h"
 
 #define SWDL_MAGIC 's', 'w', 'd', 'l'
+
+struct SWDL_HEADER* SWDL_create_header(FILE* fp, struct SIR0* sir0_header);
 
 struct SWDL_HEADER {
     char magic[4];
