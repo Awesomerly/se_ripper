@@ -10,6 +10,7 @@ struct SWDL_HEADER* SWDL_create_header(FILE* fp, struct SIR0* sir0_header);
 int SWDL_check_magic(struct SWDL_HEADER* header);
 void SWDL_print_header(struct SWDL_HEADER* swdl_header);
 void SWDL_print_datetime(struct SWDL_HEADER* swdl_header);
+struct SWDL_CHUNK_HEADER* SWDL_read_chunk_header(FILE *fp);
 
 struct SWDL_HEADER {
     char magic[4];
@@ -43,6 +44,14 @@ struct SWDL_HEADER {
     uint16_t nbprgislots;
 
     uint32_t wavilen;
+};
+
+struct SWDL_CHUNK_HEADER {
+    char label[4];
+    uint16_t _padding;
+    uint16_t _unk2;
+    uint32_t chunkbeg;
+    uint32_t chunklen;
 };
 
 #endif

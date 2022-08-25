@@ -39,6 +39,14 @@ int SWDL_check_magic(struct SWDL_HEADER* header) {
     return memcmp(header->magic, swdl_magic, sizeof(header->magic));
 }
 
+struct SWDL_CHUNK_HEADER* SWDL_read_chunk_header(FILE *fp) {
+    size_t header_size = sizeof(struct SWDL_CHUNK_HEADER);
+    struct SWDL_CHUNK_HEADER* header = malloc(header_size);
+    fread(header, sizeof(uint8_t), header_size, fp);
+
+    return header;
+}
+
 struct SWDL_HEADER* SWDL_create_header(FILE* fp, struct SIR0* sir0_header) {
     size_t header_size = sizeof(struct SWDL_HEADER);
     struct SWDL_HEADER* swdl_header = malloc(header_size);
