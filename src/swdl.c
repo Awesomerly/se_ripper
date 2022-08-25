@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <inttypes.h>
 
+#include "utils.h"
 #include "swdl.h"
 #include "sir0.h"
 
@@ -40,21 +41,22 @@ int SWDL_check_magic(struct SWDL_HEADER* header) {
 }
 
 struct SWDL_CHUNK_HEADER* SWDL_read_chunk_header(FILE *fp) {
-    size_t header_size = sizeof(struct SWDL_CHUNK_HEADER);
-    struct SWDL_CHUNK_HEADER* header = malloc(header_size);
-    fread(header, sizeof(uint8_t), header_size, fp);
+    size_t size = sizeof(struct SWDL_CHUNK_HEADER);
+
+    void* header = file_read_bytes(fp, size);
+    (struct SWDL_CHUNK_HEADER*)header;
 
     return header;
 }
 
 struct SWDL_HEADER* SWDL_create_header(FILE* fp, struct SIR0* sir0_header) {
-    size_t header_size = sizeof(struct SWDL_HEADER);
-    struct SWDL_HEADER* swdl_header = malloc(header_size);
     
     // go to SWDL file location
     fseek(fp, sir0_header->file_ptrs->swdl_ptr, SEEK_SET);
     // read in the SWDL header
-    fread(swdl_header, sizeof(uint8_t), header_size, fp);
+    size_t size = sizeof(struct SWDL_HEADER);
+    void* swdl_header = file_read_bytes(fp, size);
+    (struct SWDL_HEADER*)swdl_header;
 
     if (SWDL_check_magic(swdl_header) != 0) {
         free(swdl_header);

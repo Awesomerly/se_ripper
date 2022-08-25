@@ -1,27 +1,26 @@
 #include <stdlib.h>
 #include <string.h>
 #include "sir0.h"
+#include "utils.h"
 
 // copy SIR0 header into wrapper
 void SIR0_read_header(FILE* fp, struct SIR0* wrapper) {
     // go to beginning of file
     fseek(fp, 0, SEEK_SET);
-
-    size_t header_size = sizeof(struct SIR0_HEADER);
-    struct SIR0_HEADER* temp_header = malloc(header_size);
-
-    fread(temp_header, sizeof(uint8_t), header_size, fp);
+    // read in header
+    void* temp_header = file_read_bytes(fp, sizeof(struct SIR0_HEADER));
+    (struct SIR0_HEADER*)temp_header;
+    
     wrapper->header = temp_header;
 }
 
 // go to the file pointer offsets and read that into the wrapper
 void SIR0_read_pointers(FILE* fp, struct SIR0* wrapper) {
-    struct SIR0_FILE_PTRS* temp_ptrs = malloc(sizeof(struct SIR0_FILE_PTRS));
-
-    // go to where the pointers to files are stored
     fseek(fp, wrapper->header->file_ptrs_ptr, SEEK_SET);
-    // read the swdl and sedl pointer table into the temp file ptrs struct
-    fread(temp_ptrs, sizeof(uint8_t), sizeof(struct SIR0_FILE_PTRS), fp);
+    // read the swdl and sedl pointer table into the temp file ptrs data
+    size_t size = sizeof(struct SIR0_FILE_PTRS);
+    void* temp_ptrs = file_read_bytes(fp, size);
+    (struct SIR0_FILE_PTRS*)temp_ptrs;
 
     wrapper->file_ptrs = temp_ptrs;
 }
