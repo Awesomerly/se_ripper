@@ -7,3 +7,6 @@ It is written for Linux.
 
 The program can be compiled with make.
 You can use it on one .SE file, or you can use the provided bash script to run it on a directory called "sound".
+
+## Thanks
+- PsyCommando for documenting the Procyon DSE formats.
