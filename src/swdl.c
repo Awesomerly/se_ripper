@@ -20,7 +20,7 @@ void SWDL_print_header(struct SWDL_HEADER* swdl_header) {
 
     printf("WAVI Chunk Length: %" PRIu32, swdl_header->wavilen);
 
-    printf("\n\n");
+    printf("\n");
 
 }
 
