@@ -12,7 +12,7 @@ void SWDL_print_header(struct SWDL_HEADER* swdl_header);
 void SWDL_print_datetime(struct SWDL_HEADER* swdl_header);
 struct SWDL_CHUNK_HEADER* SWDL_read_chunk_header(FILE *fp);
 
-struct SWDL_HEADER {
+struct __attribute__((__packed__)) SWDL_HEADER {
     char magic[4];
     uint32_t _padding0;
     uint32_t file_length;
@@ -46,7 +46,7 @@ struct SWDL_HEADER {
     uint32_t wavilen;
 };
 
-struct SWDL_CHUNK_HEADER {
+struct __attribute__((__packed__)) SWDL_CHUNK_HEADER {
     char label[4];
     uint16_t _padding;
     uint16_t _unk2;

@@ -14,7 +14,7 @@ void SIR0_destroy(struct SIR0* wrapper);
 
 // unless specified, everything here is little endian.
 
-struct SIR0_HEADER {
+struct __attribute__((__packed__)) SIR0_HEADER {
     char magic[4];
 
     // pointer to SIR0_FILE_PTRS
@@ -27,7 +27,7 @@ struct SIR0_HEADER {
     uint32_t _padding;
 };
 
-struct SIR0_FILE_PTRS {
+struct __attribute__((__packed__)) SIR0_FILE_PTRS {
     uint32_t swdl_ptr;
     uint32_t sedl_ptr;
     uint64_t _padding;

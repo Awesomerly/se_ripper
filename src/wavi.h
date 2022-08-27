@@ -4,7 +4,7 @@
 #include <stdint.h>
 //#include "swdl.h"
 
-struct WAVI_SampleInfo {
+struct __attribute__((__packed__)) WAVI_SampleInfo {
     uint16_t _unk1;
 
     uint16_t index;
