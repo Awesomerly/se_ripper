@@ -2,7 +2,10 @@
 #define __SE_RIPPER_WAVI__
 
 #include <stdint.h>
+#include <stdio.h>
 //#include "swdl.h"
+
+struct WAVI_SampleInfo* WAVI_read_sampleinfo(FILE *fp);
 
 struct __attribute__((__packed__)) WAVI_SampleInfo {
     uint16_t _unk1;
