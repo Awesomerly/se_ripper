@@ -1,4 +1,4 @@
-# se_ripper
+# se_ripper (WIP!)
 
 This program parses the sound effect files in the game "Nine Hours, Nine Persons, Nine Doors", and converts them to audio files.
 It is written for Linux.
